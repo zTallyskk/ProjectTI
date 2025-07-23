@@ -1,0 +1,6 @@
+# Ignore Play! working directory #
+.eclipse
+/logs/
+/modules
+tmp/
+.cache
