@@ -1,10 +1,16 @@
 #{extends 'main.html' /}
 #{set title:'Detalhamento' /}
 
+<h5>Nome:</h5>
 <p>${pessoa.nome}</p>
+<h5>Email</h5>
 <p>${pessoa.email}</p>
-<p>${pessoa.usuario?.perfil}</p>
+<h5>Tipo de Usuario</h5>
+<p>${pessoa.perfil}</p>
+<h5>Problema</h5>
 <p>${pessoa.problema}</p>
+<h5>Descrição do Problema</h5>
+<p>${pessoa.textoProblem}</p>
 
 <a class="btn btn-primary" href="@{Pessoas.form}">Cadastrar novo</a>
 <a class="btn btn-secondary" href="@{Pessoas.listar}">Listagem</a>

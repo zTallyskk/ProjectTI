@@ -17,8 +17,10 @@
                 <td>${pessoa.email}</td>
 				</br>
                 <td>
-                    <a href="@{Pessoas.detalhar(pessoa.id)}">Detalhar</a>
+                    <a href="@{Pessoas.detalhar(pessoa)}">Detalhar</a>
                     </td>
+				<td>
+					<a href="@{Pessoas.remover(pessoa.id)}">Remover</a>
             </tr>
             #{/list}
         </tbody>
