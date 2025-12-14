@@ -1009,7 +1009,7 @@ section,
 }
 
 .hero .content .icon-box p {
-  font-size: 15px;
+  font-size: 20px;
   color: color-mix(in srgb, var(--default-color), transparent 30%);
 }
 
@@ -1157,7 +1157,7 @@ section,
 
 .services .service-item p {
   line-height: 24px;
-  font-size: 14px;
+  font-size: 20px;
   margin-bottom: 0;
 }
 

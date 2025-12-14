@@ -25,15 +25,15 @@ public class Pessoas extends Controller {
 	}
 
 	public static void listar(String termo) {
-		List<Pessoa> pessoas = null;
-		if (termo == null) {
-			pessoas = Pessoa.find("status = ?1", Status.PENDENTE).fetch();
-		} else {
-			pessoas = Pessoa.find("(lower(nome) like ?1 " + 
-			"or lower(email) like ?1) and status = ?2",
-			"%" + termo.toLowerCase() + "%",
-			Status.PENDENTE).fetch();
-		}
+	    List<Pessoa> pessoas = null;
+	    if (termo == null) {
+	        pessoas = Pessoa.find("status = ?1", Status.PENDENTE).fetch();
+	    } else {
+	        pessoas = Pessoa.find("(lower(nome) like ?1 " +
+	        "or lower(email) like ?1) and status = ?2",
+	        "%" + termo.toLowerCase() + "%",
+	        Status.PENDENTE).fetch();
+	    }
 		render(pessoas, termo);
 	}
 

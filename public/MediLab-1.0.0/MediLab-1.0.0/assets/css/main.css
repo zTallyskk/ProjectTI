@@ -87,6 +87,7 @@ h6 {
   font-family: var(--heading-font);
 }
 
+
 /* Pulsating Play Button
 ------------------------------*/
 .pulsating-play-btn {
@@ -1726,4 +1727,28 @@ section,
 --------------------------------------------------------------*/
 .starter-section {
   /* Add your styles here */
+}
+
+/*tabelaPessoas */
+.tabela-espacada {
+    /* Define o modo de borda como separado para que border-spacing funcione */
+    border-collapse: separate; 
+    /* Adiciona 15 pixels de espaçamento horizontal entre as células */
+    border-spacing: 0 15px; 
+    width: 100%; /* Opcional: faz a tabela ocupar a largura total */
+}
+
+.tabela-espacada th, 
+.tabela-espacada td {
+    padding: 10px; /* Adiciona 10px de preenchimento em todos os lados */
+    /* Opcional: Se quiser espaçar mais verticalmente, use: padding: 15px 10px; */
+}
+
+/* Opcional: Adiciona uma borda inferior sutil nas linhas para melhorar a separação visual */
+.tabela-espacada td {
+    border-bottom: 10px solid #ddd; 
+}
+/* Opcional: Remove a borda inferior da última linha para um visual mais limpo */
+.tabela-espacada tbody tr:last-child td {
+    border-bottom: none;
 }

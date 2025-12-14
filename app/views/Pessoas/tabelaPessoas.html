@@ -1,0 +1,25 @@
+#{if pessoas.empty}
+    <p>Nenhuma pessoa encontrada com o termo "${termo ?: ''}".</p>
+#{/if}
+#{else}
+  <table class="tabela-espacada">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Email</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            #{list items:pessoas, as:'pessoa'}
+            <tr>
+                <td>${pessoa.nome}</td>
+                <td>${pessoa.email}</td>
+                <td>
+                    <a href="@{Pessoas.detalhar(pessoa.id)}">Detalhar</a>
+                    </td>
+            </tr>
+            #{/list}
+        </tbody>
+    </table>
+#{/else}

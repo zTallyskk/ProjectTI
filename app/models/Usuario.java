@@ -18,5 +18,8 @@ public class Usuario extends Model {
 	public Usuario() {
 		this.perfil = Perfil.PESSOA;
 	}
-	
+	public static Usuario connect(String login, String senha) {
+        return find("byLoginAndSenha", login, senha).first();
+        
+	}
 }

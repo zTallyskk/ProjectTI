@@ -29,6 +29,8 @@ public class Inicializador extends Job {
 			Problema SO = new Problema("Sistema Operacional", 103);
 			SO.save();
 			
+			Problema mobile = new Problema("Celular", 104);
+			mobile.save();			
 			
 			Usuario usuarioJoao = new Usuario();
 			usuarioJoao.login = "joaogameskk";

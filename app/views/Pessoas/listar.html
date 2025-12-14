@@ -1,22 +1,67 @@
 #{extends 'main.html' /}
-#{set title:'Listagem de Pessoas' /}
+#{set title:'Lista de Pessoas Pendentes' /}
 
-<form action="@{Pessoas.listar}">
-	<label>Buscar por nome ou email:</label>
-	<input type="text" name="termo" value="${termo}" />
-	<input type="submit" />
+<h2>Busca de Pessoas</h2>
+
+<form id="formBusca" onsubmit="return false;">
+    <input 
+        type="text" 
+        id="termoBusca" 
+        name="termo" 
+        placeholder="Buscar por nome ou email..." 
+        value="${termo ?: ''}" 
+    />
+    <button type="submit">Buscar</button>
 </form>
 
-<ul>
-	#{list items: pessoas, as:'p'}
-		<li>${p.nome} (${p.email}) (${p.problema}) (${p.tel})| 
-			<a href="@{Pessoas.editar(p.id)}">Editar</a> |
-			<a href="@{Pessoas.remover(p.id)}">Remover</a>
-		</li>
-	#{/list}
-	#{else}
-		<li>Nenhuma pessoa cadastrada</li>
-	#{/else}
-</ul>
+<div id="lista-pessoas-container">
+    #{include 'Pessoas/tabelaPessoas.html' /}
+</div>
 
-<a class="btn btn-primary" href="@{Pessoas.form}">Cadastrar Novo</a>
+<script type="text/javascript" charset="${_response_encoding}">
+    $(document).ready(function() { 
+        // Função central que faz a chamada AJAX e atualiza o container
+        function carregarLista(termo) {
+            // Feedback visual enquanto carrega
+            $('#lista-pessoas-container').html('<p>Carregando resultados...</p>');
+            
+            // Requisição AJAX
+            $.ajax({
+                url: '@{Pessoas.listar()}', 
+                type: 'GET',
+                data: { 
+                    termo: termo // Parâmetro que será mapeado para 'String termo' no seu Controller
+                },
+                success: function(html) {
+                    // Substitui o conteúdo do container com o HTML retornado (a tabela)
+                    $('#lista-pessoas-container').html(html);
+                },
+                error: function(xhr, status, error) {
+                    // Trata possíveis erros de comunicação
+                    $('#lista-pessoas-container').html('<p style="color: red;">Erro ao carregar a lista: ' + error + '</p>');
+                }
+            });
+        }
+
+        // A. Dispara a busca quando o usuário clica no botão "Buscar"
+        $('#formBusca').submit(function(e) {
+            // e.preventDefault(); // O onsubmit="return false;" já faz isso
+            const termo = $('#termoBusca').val();
+            carregarLista(termo);
+        });
+
+        // B. Opcional: Dispara a busca enquanto o usuário digita (mais interativo)
+        let typingTimer;               
+        const doneTypingInterval = 500; // Tempo em milissegundos para esperar
+        
+        $('#termoBusca').on('keyup', function () {
+            clearTimeout(typingTimer);
+            // Só executa a busca se o usuário parar de digitar por 500ms
+            typingTimer = setTimeout(function() {
+                const termo = $('#termoBusca').val();
+                carregarLista(termo);
+            }, doneTypingInterval);
+        });
+
+    });
+</script>
