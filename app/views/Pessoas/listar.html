@@ -49,10 +49,6 @@
             const termo = $('#termoBusca').val();
             carregarLista(termo);
         });
-
-        // B. Opcional: Dispara a busca enquanto o usuário digita (mais interativo)
-        let typingTimer;               
-        const doneTypingInterval = 500; // Tempo em milissegundos para esperar
         
         $('#termoBusca').on('keyup', function () {
             clearTimeout(typingTimer);

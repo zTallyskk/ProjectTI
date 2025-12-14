@@ -499,66 +499,68 @@
 			</div>
 			<!-- End Section Title -->
 
-			<form action="@{Pessoas.salvar}">
-				<input type="hidden" name="pessoa.id" value="${p?.id}" />
+			<!--Form-->
+			 <form action="@{Pessoas.salvar}" method="POST">
+            <input type="hidden" name="pessoa.id" value="${p?.id}" />
 
-				<div class="mb-3">
-					<label class="form-label">Nome:</label> <input class="form-control"
-						type="text" name="pessoa.nome"
-						value="${flash['pessoa.nome'] ? flash['pessoa.nome'] : p?.nome}" />
-					#{ifError 'pessoa.nome'} #{list items:errors.forKey('pessoa.nome'),
-					as:'error'} <span class="error-message">${error.message}</span><br>
-					#{/list} #{/ifError}
-				</div>
+            <div class="mb-3">
+                <label class="form-label">Nome:</label> 
+                <input class="form-control" type="text" name="pessoa.nome" value="${flash['pessoa.nome'] ? flash['pessoa.nome'] : p?.nome}" />
+                #{ifError 'pessoa.nome'} 
+                    #{list items:errors.forKey('pessoa.nome'), as:'error'} 
+                        <span class="error-message">${error.message}</span><br>
+                    #{/list} 
+                #{/ifError}
+            </div>
 
-				<div class="mb-3">
-					<label class="form-label">Email:</label> <input
-						class="form-control" type="text" name="pessoa.email"
-						value="${flash['pessoa.email'] ? flash['pessoa.email'] : p?.email}" />
-					#{ifError 'pessoa.email'} #{list
-					items:errors.forKey('pessoa.email'), as:'error'} <span
-						class="error-message">${error.message}</span><br> #{/list}
-					#{/ifError}
-				</div>
+            <div class="mb-3">
+                <label class="form-label">Email:</label> 
+                <input class="form-control" type="text" name="pessoa.email" value="${flash['pessoa.email'] ? flash['pessoa.email'] : p?.email}" />
+                #{ifError 'pessoa.email'} 
+                    #{list items:errors.forKey('pessoa.email'), as:'error'} 
+                        <span class="error-message">${error.message}</span><br> 
+                    #{/list}
+                #{/ifError}
+            </div>
 
-				<div class="mb-3">
-					<label class="form-label">Telefone:</label> <input
-						class="form-control" type="text" name="pessoa.tel"
-						value="${flash['pessoa.tel'] ? flash['pessoa.tel'] : p?.tel}" />
-					#{ifError 'pessoa.tel'} #{list items:errors.forKey('pessoa.tel'),
-					as:'error'} <span class="error-message">${error.message}</span><br>
-					#{/list} #{/ifError}
-				</div>
+            <div class="mb-3">
+                <label class="form-label">Telefone:</label> 
+                <input class="form-control" type="text" name="pessoa.tel" value="${flash['pessoa.tel'] ? flash['pessoa.tel'] : p?.tel}" />
+                #{ifError 'pessoa.tel'} 
+                    #{list items:errors.forKey('pessoa.tel'), as:'error'} 
+                        <span class="error-message">${error.message}</span><br>
+                    #{/list} 
+                #{/ifError}
+            </div>
 
-				<div class="mb-3">
-					<label class="form-label">Problema:</label> <select
-						class="form-select" name="pessoa.problema.id"> #{list
-						items:problemas, as:'pro'}
-						<option value="${pro.id}">${pro.id == p?.problema?.id ?
-							'selected' : ''}> ${pro.tipo}</option> #{/list}
-					</select>
-				</div>
+            <div class="mb-3">
+                <label class="form-label">Problema:</label> 
+                <select class="form-select" name="pessoa.problema.id"> 
+                    #{list items:problemas, as:'pro'}
+                        <option value="${pro.id}" ${pro.id == p?.problema?.id ? 'selected' : ''}> ${pro.tipo}</option> 
+                    #{/list}
+                </select>
+            </div>
 
-				<div class="mb-3">
-					<label class="form-label">Descreva seu problema:</label>
-					<textarea class="form-control" name="pessoa.textoProblem.id"
-						value="p.textoProblem" rows="10" cols="50"
-						placeholder="Digite seu problema aqui..."></textarea>
-					<br>
-					<br>
-				</div>
+            <div class="mb-3">
+                <label class="form-label">Descreva seu problema:</label>
+                <textarea class="form-control" name="pessoa.textoProblem" rows="10" cols="50" placeholder="Digite seu problema aqui...">${p?.textoProblem}</textarea>
+            </div>
 
-				<input class="btn btn-primary" type="submit"
-					value="${p ? 'Editar':'Cadastrar'}" /> </br> </br>
-				</br>
-			</form>
-		<!--	#{if user?.perfil == 'Responsavel'} -->
-			<div class="btn btn-primary">
-				<a href="@{atendimentos.listar}" type="submit">
-					<button class="btn btn-primary">Ir para Lista de Atendimentos</button>
-				</a>
-			</div>
-	<!--#{/if}-->
+            <input class="btn btn-primary" type="submit" value="${p ? 'Editar':'Cadastrar'}" /> 
+            <br><br>
+        </form>
+<!--End Form-->
+		#{if session['usuarioPerfil'] == 'RESPONSAVEL'}
+    	<div class="row mt-3">
+        <div class="col-12 text-center">
+            <a href="@{Pessoas.Listar()}" class="btn btn-primary btn-lg">
+                Ir para Lista de Pessoas
+            </a>
+       		 </div>
+    		</div>
+		#{/if}
+
 			<div class="mb-5" data-aos="fade-up" data-aos-delay="200">
 				<iframe style="border: 0; width: 100%; height: 270px;"
 					src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus"

@@ -1,18 +1,16 @@
 package models;
 
 import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import play.data.validation.Match;
 import play.data.validation.Required;
 import play.db.jpa.Model;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-
 import net.sf.oval.constraint.Email;
+import javax.persistence.CascadeType;
 
 @Entity
 public class Pessoa extends Model {
@@ -30,7 +28,7 @@ public class Pessoa extends Model {
 	@Enumerated(EnumType.STRING)
 	public Perfil perfil;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	public Usuario usuario;
 	
 	public String textoProblem;
@@ -43,6 +41,6 @@ public class Pessoa extends Model {
 
 	public Pessoa() {
 		this.status = Status.PENDENTE;
-		this.perfil = perfil.PESSOA;
+		this.perfil = Perfil.PESSOA;
 	}
 }
