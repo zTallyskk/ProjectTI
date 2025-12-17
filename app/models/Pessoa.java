@@ -22,9 +22,10 @@ public class Pessoa extends Model {
     @Email(message = "O formato do e-mail é inválido. Ex: nome@dominio.com")
 	public String email;
 	
-	@Required(message = "O campo Telefone é obrigatório.")
-	public Integer tel;
-
+	@Required(message = "O campo Telefone (com DDD) é obrigatório.")
+	// Regex para formatos como (84) 99999-9999 ou 84999999999
+	@Match(value="^\\(?\\d{2}\\)?\\s?\\d{4,5}-?\\d{4}$", message="Formato de telefone inválido. Ex: (84) 98888-7777")
+	public String tel; // Alterado de Integer para String
 	@Enumerated(EnumType.STRING)
 	public Perfil perfil;
 	

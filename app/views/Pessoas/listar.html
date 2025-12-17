@@ -21,10 +21,7 @@
 <script type="text/javascript" charset="${_response_encoding}">
     $(document).ready(function() { 
         // Função central que faz a chamada AJAX e atualiza o container
-        function carregarLista(termo) {
-            // Feedback visual enquanto carrega
-            $('#lista-pessoas-container').html('<p>Carregando resultados...</p>');
-            
+        function carregarLista(termo) {          
             // Requisição AJAX
             $.ajax({
                 url: '@{Pessoas.listar()}', 
@@ -44,8 +41,7 @@
         }
 
         // A. Dispara a busca quando o usuário clica no botão "Buscar"
-        $('#formBusca').submit(function(e) {
-            // e.preventDefault(); // O onsubmit="return false;" já faz isso
+        $('#formBusca').submit(function(e) {	
             const termo = $('#termoBusca').val();
             carregarLista(termo);
         });

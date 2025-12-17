@@ -52,7 +52,7 @@ public class Inicializador extends Job {
 			Pessoa maria = new Pessoa();
 			maria.nome = "Maria Roberta";
 			maria.email = "robertinha@gmail.com";
-			maria.tel = 892992999;
+			maria.tel = "(84)99219-0292";
 			maria.problema = SO;
 			maria.usuario = usuarioMaria;
 			maria.textoProblem = "O notebook não passa da tela de login";
